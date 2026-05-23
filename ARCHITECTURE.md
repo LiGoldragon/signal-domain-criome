@@ -15,12 +15,14 @@ Provider-specific execution belongs to `cloud`.
 - `Observe(Observation)` reads registered domains, delegations, or projected
   desired state.
 - `Resolve(ResolutionQuery)` resolves a name in a named resolution scope.
+  When another domain daemon is authoritative, resolution returns
+  `NotAuthoritative(AuthorityDelegation)` instead of rejecting the request.
 - `Project(ProjectionQuery)` projects provider-neutral records and redirects.
 
 ## Owns
 
 - Domain names, root names, and branch delegations.
-- Resolution queries and results.
+- Resolution queries, results, and authority delegation replies.
 - Provider-neutral domain-name-system record projections.
 - Provider-neutral redirect projections.
 

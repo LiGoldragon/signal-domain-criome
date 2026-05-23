@@ -1,8 +1,9 @@
 use nota_codec::{Decoder, Encoder, NotaDecode, NotaEncode};
 use signal_domain_criome::{
-    Address, DomainName, DomainNameSystemRecord, NetworkAddress, Observation, Operation,
-    OperationKind, Projection, ProjectionQuery, ProjectionScope, RecordKind, RecordValue, Reply,
-    ReplyKind, ResolutionQuery, ResolutionResult, ResolutionScope,
+    Address, AuthorityDelegation, AuthorityEndpoint, DomainName, DomainNameSystemRecord,
+    NetworkAddress, Observation, Operation, OperationKind, Projection, ProjectionQuery,
+    ProjectionScope, RecordKind, RecordValue, Reply, ReplyKind, ResolutionQuery, ResolutionResult,
+    ResolutionScope,
 };
 use signal_frame::{RequestPayload, SignalOperationHeads};
 
@@ -86,6 +87,21 @@ fn resolution_reply_round_trips_through_nota() {
             address: NetworkAddress::new("203.0.113.10"),
         }],
     });
+
+    let text = encode_to_text(&reply);
+    let mut decoder = Decoder::new(&text);
+    let decoded = Reply::decode(&mut decoder).expect("decode");
+    assert_eq!(decoded, reply);
+}
+
+#[test]
+fn not_authoritative_reply_carries_authority_endpoint() {
+    let reply = Reply::NotAuthoritative(AuthorityDelegation {
+        domain: DomainName::new("goldragon.criome"),
+        endpoint: AuthorityEndpoint::new("domain-criome://goldragon.criome"),
+    });
+
+    assert_eq!(reply.kind(), ReplyKind::NotAuthoritative);
 
     let text = encode_to_text(&reply);
     let mut decoder = Decoder::new(&text);

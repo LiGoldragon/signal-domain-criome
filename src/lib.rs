@@ -39,6 +39,7 @@ string_newtype!(NetworkAddress);
 string_newtype!(RecordValue);
 string_newtype!(UniformResourceLocator);
 string_newtype!(DelegationName);
+string_newtype!(AuthorityEndpoint);
 
 #[derive(
     Archive, RkyvSerialize, RkyvDeserialize, NotaEnum, Debug, Clone, Copy, PartialEq, Eq, Hash,
@@ -100,6 +101,12 @@ pub struct Address {
 pub struct ResolutionResult {
     pub query: ResolutionQuery,
     pub addresses: Vec<Address>,
+}
+
+#[derive(Archive, RkyvSerialize, RkyvDeserialize, NotaRecord, Debug, Clone, PartialEq, Eq)]
+pub struct AuthorityDelegation {
+    pub domain: DomainName,
+    pub endpoint: AuthorityEndpoint,
 }
 
 #[derive(Archive, RkyvSerialize, RkyvDeserialize, NotaRecord, Debug, Clone, PartialEq, Eq)]
@@ -213,6 +220,7 @@ signal_channel! {
     reply Reply {
         Observed(ObservationResult),
         Resolved(ResolutionResult),
+        NotAuthoritative(AuthorityDelegation),
         Projected(Projection),
         RequestRejected(RequestRejected),
     }
