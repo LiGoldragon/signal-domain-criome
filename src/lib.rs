@@ -212,7 +212,6 @@ pub enum RejectionReason {
 
 #[derive(Archive, RkyvSerialize, RkyvDeserialize, NotaRecord, Debug, Clone, PartialEq, Eq)]
 pub struct RequestRejected {
-    pub operation: OperationKind,
     pub reason: RejectionReason,
 }
 
