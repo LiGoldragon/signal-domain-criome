@@ -1,7 +1,7 @@
 use nota_codec::{Decoder, Encoder, NotaDecode, NotaEncode};
 use signal_domain_criome::{
     Address, AuthorityDelegation, AuthorityEndpoint, DomainName, DomainNameSystemRecord,
-    NetworkAddress, Observation, Operation, OperationKind, Projection, ProjectionQuery,
+    NetworkAddress, NoRecords, Observation, Operation, OperationKind, Projection, ProjectionQuery,
     ProjectionScope, RecordKind, RecordValue, Reply, ReplyKind, ResolutionQuery, ResolutionResult,
     ResolutionScope,
 };
@@ -88,6 +88,22 @@ fn resolution_reply_round_trips_through_nota() {
         }],
     });
 
+    let text = encode_to_text(&reply);
+    let mut decoder = Decoder::new(&text);
+    let decoded = Reply::decode(&mut decoder).expect("decode");
+    assert_eq!(decoded, reply);
+}
+
+#[test]
+fn no_records_reply_round_trips_through_nota() {
+    let reply = Reply::NoRecords(NoRecords {
+        query: ResolutionQuery {
+            name: DomainName::new("goldragon.criome"),
+            scope: ResolutionScope::Public,
+        },
+    });
+
+    assert_eq!(reply.kind(), ReplyKind::NoRecords);
     let text = encode_to_text(&reply);
     let mut decoder = Decoder::new(&text);
     let decoded = Reply::decode(&mut decoder).expect("decode");

@@ -104,6 +104,11 @@ pub struct ResolutionResult {
 }
 
 #[derive(Archive, RkyvSerialize, RkyvDeserialize, NotaRecord, Debug, Clone, PartialEq, Eq)]
+pub struct NoRecords {
+    pub query: ResolutionQuery,
+}
+
+#[derive(Archive, RkyvSerialize, RkyvDeserialize, NotaRecord, Debug, Clone, PartialEq, Eq)]
 pub struct AuthorityDelegation {
     pub domain: DomainName,
     pub endpoint: AuthorityEndpoint,
@@ -220,6 +225,7 @@ signal_channel! {
     reply Reply {
         Observed(ObservationResult),
         Resolved(ResolutionResult),
+        NoRecords(NoRecords),
         NotAuthoritative(AuthorityDelegation),
         Projected(Projection),
         RequestRejected(RequestRejected),

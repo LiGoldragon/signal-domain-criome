@@ -17,12 +17,17 @@ Provider-specific execution belongs to `cloud`.
 - `Resolve(ResolutionQuery)` resolves a name in a named resolution scope.
   When another domain daemon is authoritative, resolution returns
   `NotAuthoritative(AuthorityDelegation)` instead of rejecting the request.
+  When this daemon is authoritative but has no address records for the name,
+  resolution returns `NoRecords(NoRecords)`.
 - `Project(ProjectionQuery)` projects provider-neutral records and redirects.
 
 ## Owns
 
 - Domain names, root names, and branch delegations.
 - Resolution queries, results, and authority delegation replies.
+- `AuthorityDelegation` is the canonical redirect payload: branch
+  `Delegation` describes registry shape, while authority delegation carries
+  the endpoint a caller can ask next.
 - Provider-neutral domain-name-system record projections.
 - Provider-neutral redirect projections.
 
