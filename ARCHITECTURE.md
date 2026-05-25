@@ -42,7 +42,7 @@ Provider-specific execution belongs to `cloud`.
 
 **Status:** scheduled for migration to schema-language-based contract per `reports/designer/326-v13-spirit-complete-schema-vision.md` + `reports/designer/324-migration-mvp-spirit-handover-re-specification.md`.
 
-**Target:** this contract's hand-written `signal_channel!` invocation converts to a single `domain-criome/domain-criome.schema` file (shared with the `domain-criome` daemon's repository). The brilliant macro library (`primary-ezqx.1`) reads the schema + emits this crate's wire types + ShortHeader projection + dispatcher binding + VersionProjection impls.
+**Target:** this contract's hand-written `signal_channel!` invocation converts to a single `domain-criome/domain-criome.schema` file (shared with the `domain-criome` daemon's repository). The `schema-rust` composer library, invoked through the `emit_schema!` proc-macro, walks `AssembledSchema` top-down and emits this crate's wire types + ShortHeader projection + dispatcher binding + VersionProjection impls. The legacy `signal-frame/macros/` infrastructure is deleted as part of this migration — emission is a fresh top-down composer, not a wrapping of `signal_channel!`. See `reports/designer/340-schema-emission-no-legacy-signal-channel-2026-05-25.md` + `reports/operator/184-schema-macro-old-emitter-audit-2026-05-25.md`.
 
 **Sequence:** per `primary-kbmi.2`. Spirit is the MVP pilot landing first via `primary-ezqx.1`; this contract's schema cutover after cloud.
 
