@@ -39,6 +39,7 @@ string_newtype!(NetworkAddress);
 string_newtype!(RecordValue);
 string_newtype!(UniformResourceLocator);
 string_newtype!(DelegationName);
+string_newtype!(DelegationTarget);
 
 #[derive(
     Archive, RkyvSerialize, RkyvDeserialize, NotaEnum, Debug, Clone, Copy, PartialEq, Eq, Hash,
@@ -116,6 +117,7 @@ pub struct DomainListing {
 pub struct Delegation {
     pub name: DelegationName,
     pub domain: DomainName,
+    pub target: DelegationTarget,
 }
 
 #[derive(Archive, RkyvSerialize, RkyvDeserialize, NotaRecord, Debug, Clone, PartialEq, Eq)]

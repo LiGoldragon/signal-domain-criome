@@ -1,8 +1,9 @@
 use nota_codec::{Decoder, Encoder, NotaDecode, NotaEncode};
 use signal_domain_criome::{
-    Address, DomainName, DomainNameSystemRecord, NetworkAddress, Observation, Operation,
-    OperationKind, Projection, ProjectionQuery, ProjectionScope, RecordKind, RecordValue, Reply,
-    ReplyKind, ResolutionQuery, ResolutionResult, ResolutionScope,
+    Address, Delegation, DelegationName, DelegationTarget, DomainName, DomainNameSystemRecord,
+    NetworkAddress, Observation, Operation, OperationKind, Projection, ProjectionQuery,
+    ProjectionScope, RecordKind, RecordValue, Reply, ReplyKind, ResolutionQuery, ResolutionResult,
+    ResolutionScope,
 };
 use signal_frame::{RequestPayload, SignalOperationHeads};
 
@@ -116,4 +117,15 @@ fn observation_kind_is_typed() {
         observation.kind(),
         signal_domain_criome::ObservationKind::Projection
     );
+}
+
+#[test]
+fn delegations_carry_authority_targets() {
+    let delegation = Delegation {
+        name: DelegationName::new("www"),
+        domain: DomainName::new("goldragon.criome"),
+        target: DelegationTarget::new("domain-criome://goldragon"),
+    };
+
+    assert_eq!(delegation.target.as_str(), "domain-criome://goldragon");
 }
