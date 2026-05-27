@@ -19,7 +19,8 @@ Provider-specific execution belongs to `cloud`.
 
 ## Owns
 
-- Domain names, root names, and branch delegations.
+- Domain names, root names, and branch delegations, including the authority
+  target a caller should follow for delegated names.
 - Resolution queries and results.
 - Provider-neutral domain-name-system record projections.
 - Provider-neutral redirect projections.
