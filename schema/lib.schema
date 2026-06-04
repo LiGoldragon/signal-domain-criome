@@ -1,0 +1,52 @@
+{}
+[Observe Resolve Project Validate]
+[Observed Resolved Projected Validated RequestRejected]
+{
+  Observe Observation
+  Resolve ResolutionQuery
+  Project ProjectionQuery
+  Validate Validation
+  Observed ObservationResult
+  Resolved ResolutionResult
+  Projected Projection
+  Validated ValidationReport
+  RequestRejected RejectedRequest
+
+  Domain String
+  DomainName String
+  NetworkAddress String
+  RecordValue String
+  UniformResourceLocator String
+  DelegationName String
+  DelegationTarget String
+  ResolutionScope [Public Internal Intelligent]
+  RecordKind [AddressV4 AddressV6 CanonicalName Text]
+  RedirectStatus [Permanent Temporary]
+  PathTreatment [Preserve Replace]
+  ProjectionScope [PublicRecords RedirectRules Everything]
+
+  ResolutionQuery { name DomainName ResolutionScope * }
+  Address { name DomainName address NetworkAddress }
+  ResolutionResult { query ResolutionQuery addresses (Vec Address) }
+  DomainQuery { root (Optional DomainName) }
+  DomainListing { domains (Vec DomainName) }
+  Delegation { DelegationName * DomainName * DelegationTarget * }
+  DelegationQuery { domain (Optional DomainName) }
+  DelegationListing { delegations (Vec Delegation) }
+  DomainNameSystemRecord { name DomainName RecordKind * value RecordValue }
+  RedirectRule { source DomainName target UniformResourceLocator RedirectStatus * PathTreatment * }
+  ProjectionQuery { domain DomainName ProjectionScope * }
+  Projection { query ProjectionQuery records (Vec DomainNameSystemRecord) redirects (Vec RedirectRule) }
+  Observation [Domains Delegations Projection]
+  Domains DomainQuery
+  Delegations DelegationQuery
+  Validation { Domain * }
+  ObservationResult [Domains Delegations Projection]
+  RejectionReason [DomainUnknown DelegationUnknown ProjectionUnavailable]
+  RejectedRequest { operation OperationKind reason RejectionReason }
+  OperationKind [Observe Resolve Project Validate]
+  ValidationReport { findings (Vec ValidationFinding) }
+  ValidationFinding { severity FindingSeverity message Message }
+  FindingSeverity [Notice Warning Error]
+  Message String
+}
