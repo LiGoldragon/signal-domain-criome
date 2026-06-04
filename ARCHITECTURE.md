@@ -53,5 +53,5 @@ vocabulary:
 
 Nexus decisions, SEMA state, registry tables, projection runtime, and daemon
 storage schemas live in `domain-criome`, not here. Owner-only registry and
-projection-policy mutation messages live in `owner-signal-domain-criome`, not
-in this ordinary contract.
+projection-policy mutation messages live in `meta-signal-domain-criome`, not in
+this ordinary contract.
