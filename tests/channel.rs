@@ -7,6 +7,8 @@ use signal_domain_criome::{
 };
 use signal_frame::{RequestPayload, SignalOperationHeads};
 
+use signal_domain_criome::schema::lib as generated;
+
 fn encode_to_text<T: NotaEncode>(value: &T) -> String {
     let mut encoder = Encoder::new();
     value.encode(&mut encoder).expect("encode");
@@ -128,4 +130,18 @@ fn delegations_carry_authority_targets() {
     };
 
     assert_eq!(delegation.target.as_str(), "domain-criome://goldragon");
+}
+
+#[test]
+fn generated_schema_witness_encodes_resolve_route() {
+    let input = generated::Input::Resolve(generated::ResolutionQuery {
+        name: "goldragon.criome".to_owned(),
+        resolution_scope: generated::ResolutionScope::Public,
+    });
+
+    let bytes = input.encode_signal_frame().expect("encode");
+    let (route, decoded) = generated::Input::decode_signal_frame(&bytes).expect("decode");
+
+    assert_eq!(route, generated::InputRoute::Resolve);
+    assert_eq!(decoded, input);
 }

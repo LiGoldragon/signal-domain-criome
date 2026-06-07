@@ -31,7 +31,7 @@ Provider-specific execution belongs to `cloud`.
 - Provider account identifiers.
 - Provider API plans.
 - Name-server process implementation.
-- Owner-only registry mutation.
+- Meta registry mutation.
 
 ## Constraints
 
@@ -39,19 +39,22 @@ Provider-specific execution belongs to `cloud`.
 - Keep provider names out of the contract.
 - Keep public operation roots as domain verbs, not Sema classes.
 
-## Schema-engine upgrade track
+## Schema-emission status
 
-When this contract moves from `signal_channel!` to schema-derived generation,
-its schema lives in this repository and carries only ordinary Signal wire
-vocabulary:
+**Status:** partial. `schema/lib.schema` is present and `build.rs` runs
+`schema-rust-next`'s `GenerationPlan::wire_contract`, emitting the
+checked-in witness at `src/schema/lib.rs`.
 
-- `Input` roots for `Observe`, `Resolve`, `Project`, and validation messages.
-- `Output` roots for observations, resolutions, projections, validations, and
-  typed rejections.
-- Domain, delegation, projection, and provider-neutral record payload types that
-  cross the ordinary Signal wire.
+The crate's public top-level API still comes from the hand-written
+`src/lib.rs` types and `signal_channel!` invocation. The remaining schema
+cutover is to replace that duplicate hand-written surface with generated
+re-exports from `src/schema/lib.rs`, then update downstream imports and tests.
+The generated schema currently carries ordinary Signal wire vocabulary:
+`Observe`, `Resolve`, `Project`, validation messages, observations,
+resolutions, projections, typed rejections, and provider-neutral payload
+records.
 
 Nexus decisions, SEMA state, registry tables, projection runtime, and daemon
-storage schemas live in `domain-criome`, not here. Owner-only registry and
+storage schemas live in `domain-criome`, not here. Meta registry and
 projection-policy mutation messages live in `meta-signal-domain-criome`, not in
 this ordinary contract.

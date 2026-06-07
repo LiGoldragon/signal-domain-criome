@@ -9,7 +9,7 @@ Maintenance: `primary/skills/repo-intent.md`.*
 This file carries only the intent that is FOR this `signal-domain-criome`
 contract. Workspace-shape intent stays in the primary workspace
 `primary/INTENT.md`. Component daemon intent stays in
-`domain-criome/INTENT.md`. Owner/meta policy intent stays in
+`domain-criome/INTENT.md`. Meta-policy intent stays in
 `meta-signal-domain-criome/INTENT.md`.
 
 ## Why this repo exists
@@ -20,6 +20,7 @@ resolution and provider-neutral projection of desired domain state:
 peers observe registered domains, delegations, and projected state;
 resolve a name in a named resolution scope; and project provider-neutral
 DNS records and redirects. Owner-only registry and projection-policy
+DNS records and redirects. Meta registry and projection-policy
 mutation lives in `meta-signal-domain-criome`; registry tables,
 projection runtime, Nexus decisions, SEMA state, and daemon storage live
 in `domain-criome`.
@@ -68,9 +69,12 @@ contract-local operation verbs":
 - Depend on `signal-frame`, not deprecated `signal-core`.
 - Every operation and reply variant round-trips through both rkyv frames
   and NOTA text.
-- When this contract moves from `signal_channel!` to schema-derived
-  generation, its `schema/` carries only ordinary Signal wire
-  vocabulary; Nexus and SEMA schemas live in `domain-criome`.
+- This repo carries a checked-in `schema/lib.schema` and generated
+  `src/schema/lib.rs` witness for the ordinary Signal contract. The
+  public top-level API is still the hand-written `signal_channel!`
+  surface until the dedicated schema cutover replaces the duplicate
+  hand-written types with generated re-exports. Nexus and SEMA schemas
+  live in `domain-criome`.
 
 ## Non-ownership
 
@@ -79,7 +83,7 @@ This crate does not own:
 - external provider credentials, account identifiers, or provider API
   plans;
 - name-server process implementation;
-- owner-only registry mutation (that lives in
+- meta registry mutation (that lives in
   `meta-signal-domain-criome`);
 - provider-specific execution (that belongs to `cloud`).
 
@@ -88,7 +92,7 @@ This crate does not own:
 - `ARCHITECTURE.md` — detailed channel shape, owned vocabulary, and the
   schema-engine upgrade track.
 - `../domain-criome/INTENT.md` — daemon-side intent when it lands.
-- `../meta-signal-domain-criome/INTENT.md` — owner meta-signal policy
+- `../meta-signal-domain-criome/INTENT.md` — meta-signal policy
   contract.
 - `primary/skills/contract-repo.md` — contract repo discipline and
   naming rules.
