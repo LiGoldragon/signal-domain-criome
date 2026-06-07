@@ -37,11 +37,11 @@
   RedirectRule { source DomainName target UniformResourceLocator RedirectStatus * PathTreatment * }
   ProjectionQuery { domain DomainName ProjectionScope * }
   Projection { query ProjectionQuery records (Vec DomainNameSystemRecord) redirects (Vec RedirectRule) }
-  Observation [Domains Delegations Projection]
+  Observation [(Domains Domains) (Delegations Delegations) (Projection Project)]
   Domains DomainQuery
   Delegations DelegationQuery
   Validation { Domain * }
-  ObservationResult [Domains Delegations Projection]
+  ObservationResult [(Domains DomainListing) (Delegations DelegationListing) (Projection Projection)]
   RejectionReason [DomainUnknown DelegationUnknown ProjectionUnavailable]
   RejectedRequest { operation OperationKind reason RejectionReason }
   OperationKind [Observe Resolve Project Validate]

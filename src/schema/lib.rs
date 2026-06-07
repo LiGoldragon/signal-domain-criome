@@ -198,9 +198,9 @@ pub struct Projection {
 #[cfg_attr(feature = "nota-text", derive(nota_next::NotaDecode, nota_next::NotaEncode))]
 #[derive(rkyv::Archive, rkyv::Serialize, rkyv::Deserialize, Clone, Debug, PartialEq, Eq)]
 pub enum Observation {
-    Domains,
-    Delegations,
-    Projection,
+    Domains(Domains),
+    Delegations(Delegations),
+    Projection(Project),
 }
 
 #[rustfmt::skip]
@@ -218,9 +218,9 @@ pub struct Validation(pub Domain);
 #[cfg_attr(feature = "nota-text", derive(nota_next::NotaDecode, nota_next::NotaEncode))]
 #[derive(rkyv::Archive, rkyv::Serialize, rkyv::Deserialize, Clone, Debug, PartialEq, Eq)]
 pub enum ObservationResult {
-    Domains,
-    Delegations,
-    Projection,
+    Domains(DomainListing),
+    Delegations(DelegationListing),
+    Projection(Projection),
 }
 
 #[rustfmt::skip]
@@ -411,6 +411,32 @@ impl From<Vec<ValidationFinding>> for ValidationReport {
 }
 
 #[rustfmt::skip]
+impl Observation {
+    pub fn domains(payload: Domains) -> Self {
+        Self::Domains(payload)
+    }
+    pub fn delegations(payload: Delegations) -> Self {
+        Self::Delegations(payload)
+    }
+    pub fn projection(payload: Project) -> Self {
+        Self::Projection(payload)
+    }
+}
+
+#[rustfmt::skip]
+impl ObservationResult {
+    pub fn domains(payload: Vec<DomainName>) -> Self {
+        Self::Domains(DomainListing::new(payload))
+    }
+    pub fn delegations(payload: Vec<Delegation>) -> Self {
+        Self::Delegations(DelegationListing::new(payload))
+    }
+    pub fn projection(payload: Projection) -> Self {
+        Self::Projection(payload)
+    }
+}
+
+#[rustfmt::skip]
 impl Input {
     pub fn observe(payload: Observe) -> Self {
         Self::Observe(payload)
@@ -442,6 +468,27 @@ impl Output {
     }
     pub fn request_rejected(payload: RequestRejected) -> Self {
         Self::RequestRejected(payload)
+    }
+}
+
+#[rustfmt::skip]
+impl From<DomainListing> for ObservationResult {
+    fn from(payload: DomainListing) -> Self {
+        Self::Domains(payload)
+    }
+}
+
+#[rustfmt::skip]
+impl From<DelegationListing> for ObservationResult {
+    fn from(payload: DelegationListing) -> Self {
+        Self::Delegations(payload)
+    }
+}
+
+#[rustfmt::skip]
+impl From<Projection> for ObservationResult {
+    fn from(payload: Projection) -> Self {
+        Self::Projection(payload)
     }
 }
 

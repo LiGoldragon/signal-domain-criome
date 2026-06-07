@@ -52,7 +52,11 @@ re-exports from `src/schema/lib.rs`, then update downstream imports and tests.
 The generated schema currently carries ordinary Signal wire vocabulary:
 `Observe`, `Resolve`, `Project`, validation messages, observations,
 resolutions, projections, typed rejections, and provider-neutral payload
-records.
+records. Observation and observation-result variants are explicitly
+data-carrying in the generated schema: `Domains(DomainQuery)`,
+`Delegations(DelegationQuery)`, `Projection(ProjectionQuery)`, and their
+corresponding result payloads. Bare unit variants would make the query records
+unreachable and are not the contract shape.
 
 Nexus decisions, SEMA state, registry tables, projection runtime, and daemon
 storage schemas live in `domain-criome`, not here. Meta registry and

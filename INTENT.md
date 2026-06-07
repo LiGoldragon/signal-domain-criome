@@ -68,6 +68,9 @@ contract-local operation verbs":
 - Depend on `signal-frame`, not deprecated `signal-core`.
 - Every operation and reply variant round-trips through both rkyv frames
   and NOTA text.
+- Generated observation variants carry their query/result payloads; unit
+  observation variants are a schema bug because they strand `DomainQuery`,
+  `DelegationQuery`, and projection payload records outside the wire tree.
 - This repo carries a checked-in `schema/lib.schema` and generated
   `src/schema/lib.rs` witness for the ordinary Signal contract. The
   public top-level API is still the hand-written `signal_channel!`

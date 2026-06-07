@@ -140,3 +140,25 @@ fn generated_schema_witness_encodes_resolve_route() {
     assert_eq!(route, generated::InputRoute::Resolve);
     assert_eq!(decoded, input);
 }
+
+#[test]
+fn generated_observation_variants_carry_queries_and_results() {
+    let input = generated::Input::Observe(generated::Observation::Domains(
+        generated::DomainQuery::new(Some("goldragon.criome".to_owned())),
+    ));
+
+    let bytes = input.encode_signal_frame().expect("encode observe");
+    let (route, decoded) = generated::Input::decode_signal_frame(&bytes).expect("decode observe");
+
+    assert_eq!(route, generated::InputRoute::Observe);
+    assert_eq!(decoded, input);
+
+    let output = generated::Output::Observed(generated::ObservationResult::domains(vec![
+        "goldragon.criome".to_owned(),
+    ]));
+    let bytes = output.encode_signal_frame().expect("encode observed");
+    let (route, decoded) = generated::Output::decode_signal_frame(&bytes).expect("decode observed");
+
+    assert_eq!(route, generated::OutputRoute::Observed);
+    assert_eq!(decoded, output);
+}
