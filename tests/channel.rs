@@ -1,4 +1,4 @@
-use nota_codec::{Decoder, Encoder, NotaDecode, NotaEncode};
+use nota_next::{NotaEncode, NotaSource};
 use signal_domain_criome::{
     Address, Delegation, DelegationName, DelegationTarget, DomainName, DomainNameSystemRecord,
     NetworkAddress, Observation, Operation, OperationKind, Projection, ProjectionQuery,
@@ -10,9 +10,7 @@ use signal_frame::{RequestPayload, SignalOperationHeads};
 use signal_domain_criome::schema::lib as generated;
 
 fn encode_to_text<T: NotaEncode>(value: &T) -> String {
-    let mut encoder = Encoder::new();
-    value.encode(&mut encoder).expect("encode");
-    encoder.into_string()
+    value.to_nota()
 }
 
 #[test]
@@ -39,8 +37,7 @@ fn resolve_operation_round_trips_through_nota() {
     let text = encode_to_text(&operation);
     assert_eq!(text, "(Resolve ([goldragon.criome] Public))");
 
-    let mut decoder = Decoder::new(&text);
-    let decoded = Operation::decode(&mut decoder).expect("decode");
+    let decoded = NotaSource::new(&text).parse::<Operation>().expect("decode");
     assert_eq!(decoded, operation);
 }
 
@@ -71,8 +68,7 @@ fn projection_reply_round_trips_through_nota() {
 
     assert_eq!(reply.kind(), ReplyKind::Projected);
     let text = encode_to_text(&reply);
-    let mut decoder = Decoder::new(&text);
-    let decoded = Reply::decode(&mut decoder).expect("decode");
+    let decoded = NotaSource::new(&text).parse::<Reply>().expect("decode");
     assert_eq!(decoded, reply);
 }
 
@@ -91,8 +87,7 @@ fn resolution_reply_round_trips_through_nota() {
     });
 
     let text = encode_to_text(&reply);
-    let mut decoder = Decoder::new(&text);
-    let decoded = Reply::decode(&mut decoder).expect("decode");
+    let decoded = NotaSource::new(&text).parse::<Reply>().expect("decode");
     assert_eq!(decoded, reply);
 }
 

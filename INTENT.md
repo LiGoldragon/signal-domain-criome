@@ -19,7 +19,6 @@ for the `domain-criome` component. It exposes intelligent Criome-domain
 resolution and provider-neutral projection of desired domain state:
 peers observe registered domains, delegations, and projected state;
 resolve a name in a named resolution scope; and project provider-neutral
-DNS records and redirects. Owner-only registry and projection-policy
 DNS records and redirects. Meta registry and projection-policy
 mutation lives in `meta-signal-domain-criome`; registry tables,
 projection runtime, Nexus decisions, SEMA state, and daemon storage live
