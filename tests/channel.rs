@@ -35,7 +35,7 @@ fn resolve_operation_round_trips_through_nota() {
     });
 
     let text = encode_to_text(&operation);
-    assert_eq!(text, "(Resolve ([goldragon.criome] Public))");
+    assert_eq!(text, "(Resolve (goldragon.criome Public))");
 
     let decoded = NotaSource::new(&text).parse::<Operation>().expect("decode");
     assert_eq!(decoded, operation);
@@ -129,8 +129,8 @@ fn delegations_carry_authority_targets() {
 
 #[test]
 fn generated_schema_witness_encodes_resolve_route() {
-    let input = generated::Input::Resolve(generated::ResolutionQuery {
-        name: "goldragon.criome".to_owned(),
+    let input = generated::Input::resolve(generated::ResolutionQuery {
+        name: generated::DomainName::new("goldragon.criome"),
         resolution_scope: generated::ResolutionScope::Public,
     });
 
@@ -143,8 +143,8 @@ fn generated_schema_witness_encodes_resolve_route() {
 
 #[test]
 fn generated_observation_variants_carry_queries_and_results() {
-    let input = generated::Input::Observe(generated::Observation::Domains(
-        generated::DomainQuery::new(Some("goldragon.criome".to_owned())),
+    let input = generated::Input::observe(generated::Observation::domains(
+        generated::DomainQuery::new(Some(generated::DomainName::new("goldragon.criome"))),
     ));
 
     let bytes = input.encode_signal_frame().expect("encode observe");
@@ -153,8 +153,8 @@ fn generated_observation_variants_carry_queries_and_results() {
     assert_eq!(route, generated::InputRoute::Observe);
     assert_eq!(decoded, input);
 
-    let output = generated::Output::Observed(generated::ObservationResult::domains(vec![
-        "goldragon.criome".to_owned(),
+    let output = generated::Output::observed(generated::ObservationResult::domains(vec![
+        generated::DomainName::new("goldragon.criome"),
     ]));
     let bytes = output.encode_signal_frame().expect("encode observed");
     let (route, decoded) = generated::Output::decode_signal_frame(&bytes).expect("decode observed");

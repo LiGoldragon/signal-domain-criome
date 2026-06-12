@@ -11,59 +11,100 @@ pub type Path = std::string::String;
 
 #[rustfmt::skip]
 #[cfg(feature = "nota-text")]
-pub use nota_next::{NotaDecode, NotaDecodeError, NotaEncode, NotaSource};
-
-#[rustfmt::skip]
-pub type Observe = Observation;
-
-#[rustfmt::skip]
-pub type Resolve = ResolutionQuery;
-
-#[rustfmt::skip]
-pub type Project = ProjectionQuery;
-
-#[rustfmt::skip]
-pub type Validate = Validation;
-
-#[rustfmt::skip]
-pub type Observed = ObservationResult;
-
-#[rustfmt::skip]
-pub type Resolved = ResolutionResult;
-
-#[rustfmt::skip]
-pub type Projected = Projection;
-
-#[rustfmt::skip]
-pub type Validated = ValidationReport;
-
-#[rustfmt::skip]
-pub type RequestRejected = RejectedRequest;
-
-#[rustfmt::skip]
-pub type Domain = String;
-
-#[rustfmt::skip]
-pub type DomainName = String;
-
-#[rustfmt::skip]
-pub type NetworkAddress = String;
-
-#[rustfmt::skip]
-pub type RecordValue = String;
-
-#[rustfmt::skip]
-pub type UniformResourceLocator = String;
-
-#[rustfmt::skip]
-pub type DelegationName = String;
-
-#[rustfmt::skip]
-pub type DelegationTarget = String;
+pub use nota_next::{NotaDecodeError, NotaEncode, NotaSource};
 
 #[rustfmt::skip]
 #[cfg_attr(feature = "nota-text", derive(nota_next::NotaDecode, nota_next::NotaEncode))]
 #[derive(rkyv::Archive, rkyv::Serialize, rkyv::Deserialize, Clone, Debug, PartialEq, Eq)]
+pub struct Observe(Observation);
+
+#[rustfmt::skip]
+#[cfg_attr(feature = "nota-text", derive(nota_next::NotaDecode, nota_next::NotaEncode))]
+#[derive(rkyv::Archive, rkyv::Serialize, rkyv::Deserialize, Clone, Debug, PartialEq, Eq)]
+pub struct Resolve(ResolutionQuery);
+
+#[rustfmt::skip]
+#[cfg_attr(feature = "nota-text", derive(nota_next::NotaDecode, nota_next::NotaEncode))]
+#[derive(rkyv::Archive, rkyv::Serialize, rkyv::Deserialize, Clone, Debug, PartialEq, Eq)]
+pub struct Project(ProjectionQuery);
+
+#[rustfmt::skip]
+#[cfg_attr(feature = "nota-text", derive(nota_next::NotaDecode, nota_next::NotaEncode))]
+#[derive(rkyv::Archive, rkyv::Serialize, rkyv::Deserialize, Clone, Debug, PartialEq, Eq)]
+pub struct Validate(Validation);
+
+#[rustfmt::skip]
+#[cfg_attr(feature = "nota-text", derive(nota_next::NotaDecode, nota_next::NotaEncode))]
+#[derive(rkyv::Archive, rkyv::Serialize, rkyv::Deserialize, Clone, Debug, PartialEq, Eq)]
+pub struct Observed(ObservationResult);
+
+#[rustfmt::skip]
+#[cfg_attr(feature = "nota-text", derive(nota_next::NotaDecode, nota_next::NotaEncode))]
+#[derive(rkyv::Archive, rkyv::Serialize, rkyv::Deserialize, Clone, Debug, PartialEq, Eq)]
+pub struct Resolved(ResolutionResult);
+
+#[rustfmt::skip]
+#[cfg_attr(feature = "nota-text", derive(nota_next::NotaDecode, nota_next::NotaEncode))]
+#[derive(rkyv::Archive, rkyv::Serialize, rkyv::Deserialize, Clone, Debug, PartialEq, Eq)]
+pub struct Projected(Projection);
+
+#[rustfmt::skip]
+#[cfg_attr(feature = "nota-text", derive(nota_next::NotaDecode, nota_next::NotaEncode))]
+#[derive(rkyv::Archive, rkyv::Serialize, rkyv::Deserialize, Clone, Debug, PartialEq, Eq)]
+pub struct Validated(ValidationReport);
+
+#[rustfmt::skip]
+#[cfg_attr(feature = "nota-text", derive(nota_next::NotaDecode, nota_next::NotaEncode))]
+#[derive(rkyv::Archive, rkyv::Serialize, rkyv::Deserialize, Clone, Debug, PartialEq, Eq)]
+pub struct RequestRejected(RejectedRequest);
+
+#[rustfmt::skip]
+#[cfg_attr(feature = "nota-text", derive(nota_next::NotaDecode, nota_next::NotaEncode))]
+#[derive(rkyv::Archive, rkyv::Serialize, rkyv::Deserialize, Clone, Debug, PartialEq, Eq)]
+pub struct Domain(String);
+
+#[rustfmt::skip]
+#[cfg_attr(feature = "nota-text", derive(nota_next::NotaDecode, nota_next::NotaEncode))]
+#[derive(rkyv::Archive, rkyv::Serialize, rkyv::Deserialize, Clone, Debug, PartialEq, Eq)]
+pub struct DomainName(String);
+
+#[rustfmt::skip]
+#[cfg_attr(feature = "nota-text", derive(nota_next::NotaDecode, nota_next::NotaEncode))]
+#[derive(rkyv::Archive, rkyv::Serialize, rkyv::Deserialize, Clone, Debug, PartialEq, Eq)]
+pub struct NetworkAddress(String);
+
+#[rustfmt::skip]
+#[cfg_attr(feature = "nota-text", derive(nota_next::NotaDecode, nota_next::NotaEncode))]
+#[derive(rkyv::Archive, rkyv::Serialize, rkyv::Deserialize, Clone, Debug, PartialEq, Eq)]
+pub struct RecordValue(String);
+
+#[rustfmt::skip]
+#[cfg_attr(feature = "nota-text", derive(nota_next::NotaDecode, nota_next::NotaEncode))]
+#[derive(rkyv::Archive, rkyv::Serialize, rkyv::Deserialize, Clone, Debug, PartialEq, Eq)]
+pub struct UniformResourceLocator(String);
+
+#[rustfmt::skip]
+#[cfg_attr(feature = "nota-text", derive(nota_next::NotaDecode, nota_next::NotaEncode))]
+#[derive(rkyv::Archive, rkyv::Serialize, rkyv::Deserialize, Clone, Debug, PartialEq, Eq)]
+pub struct DelegationName(String);
+
+#[rustfmt::skip]
+#[cfg_attr(feature = "nota-text", derive(nota_next::NotaDecode, nota_next::NotaEncode))]
+#[derive(rkyv::Archive, rkyv::Serialize, rkyv::Deserialize, Clone, Debug, PartialEq, Eq)]
+pub struct DelegationTarget(String);
+
+#[rustfmt::skip]
+#[cfg_attr(feature = "nota-text", derive(nota_next::NotaDecode, nota_next::NotaEncode))]
+#[derive(
+    rkyv::Archive,
+    rkyv::Serialize,
+    rkyv::Deserialize,
+    Clone,
+    Copy,
+    Debug,
+    PartialEq,
+    Eq,
+)]
 pub enum ResolutionScope {
     Public,
     Internal,
@@ -72,7 +113,16 @@ pub enum ResolutionScope {
 
 #[rustfmt::skip]
 #[cfg_attr(feature = "nota-text", derive(nota_next::NotaDecode, nota_next::NotaEncode))]
-#[derive(rkyv::Archive, rkyv::Serialize, rkyv::Deserialize, Clone, Debug, PartialEq, Eq)]
+#[derive(
+    rkyv::Archive,
+    rkyv::Serialize,
+    rkyv::Deserialize,
+    Clone,
+    Copy,
+    Debug,
+    PartialEq,
+    Eq,
+)]
 pub enum RecordKind {
     AddressV4,
     AddressV6,
@@ -82,7 +132,16 @@ pub enum RecordKind {
 
 #[rustfmt::skip]
 #[cfg_attr(feature = "nota-text", derive(nota_next::NotaDecode, nota_next::NotaEncode))]
-#[derive(rkyv::Archive, rkyv::Serialize, rkyv::Deserialize, Clone, Debug, PartialEq, Eq)]
+#[derive(
+    rkyv::Archive,
+    rkyv::Serialize,
+    rkyv::Deserialize,
+    Clone,
+    Copy,
+    Debug,
+    PartialEq,
+    Eq,
+)]
 pub enum RedirectStatus {
     Permanent,
     Temporary,
@@ -90,7 +149,16 @@ pub enum RedirectStatus {
 
 #[rustfmt::skip]
 #[cfg_attr(feature = "nota-text", derive(nota_next::NotaDecode, nota_next::NotaEncode))]
-#[derive(rkyv::Archive, rkyv::Serialize, rkyv::Deserialize, Clone, Debug, PartialEq, Eq)]
+#[derive(
+    rkyv::Archive,
+    rkyv::Serialize,
+    rkyv::Deserialize,
+    Clone,
+    Copy,
+    Debug,
+    PartialEq,
+    Eq,
+)]
 pub enum PathTreatment {
     Preserve,
     Replace,
@@ -98,7 +166,16 @@ pub enum PathTreatment {
 
 #[rustfmt::skip]
 #[cfg_attr(feature = "nota-text", derive(nota_next::NotaDecode, nota_next::NotaEncode))]
-#[derive(rkyv::Archive, rkyv::Serialize, rkyv::Deserialize, Clone, Debug, PartialEq, Eq)]
+#[derive(
+    rkyv::Archive,
+    rkyv::Serialize,
+    rkyv::Deserialize,
+    Clone,
+    Copy,
+    Debug,
+    PartialEq,
+    Eq,
+)]
 pub enum ProjectionScope {
     PublicRecords,
     RedirectRules,
@@ -132,12 +209,12 @@ pub struct ResolutionResult {
 #[rustfmt::skip]
 #[cfg_attr(feature = "nota-text", derive(nota_next::NotaDecode, nota_next::NotaEncode))]
 #[derive(rkyv::Archive, rkyv::Serialize, rkyv::Deserialize, Clone, Debug, PartialEq, Eq)]
-pub struct DomainQuery(pub Option<DomainName>);
+pub struct DomainQuery(Option<DomainName>);
 
 #[rustfmt::skip]
 #[cfg_attr(feature = "nota-text", derive(nota_next::NotaDecode, nota_next::NotaEncode))]
 #[derive(rkyv::Archive, rkyv::Serialize, rkyv::Deserialize, Clone, Debug, PartialEq, Eq)]
-pub struct DomainListing(pub Vec<DomainName>);
+pub struct DomainListing(Vec<DomainName>);
 
 #[rustfmt::skip]
 #[cfg_attr(feature = "nota-text", derive(nota_next::NotaDecode, nota_next::NotaEncode))]
@@ -151,12 +228,12 @@ pub struct Delegation {
 #[rustfmt::skip]
 #[cfg_attr(feature = "nota-text", derive(nota_next::NotaDecode, nota_next::NotaEncode))]
 #[derive(rkyv::Archive, rkyv::Serialize, rkyv::Deserialize, Clone, Debug, PartialEq, Eq)]
-pub struct DelegationQuery(pub Option<DomainName>);
+pub struct DelegationQuery(Option<DomainName>);
 
 #[rustfmt::skip]
 #[cfg_attr(feature = "nota-text", derive(nota_next::NotaDecode, nota_next::NotaEncode))]
 #[derive(rkyv::Archive, rkyv::Serialize, rkyv::Deserialize, Clone, Debug, PartialEq, Eq)]
-pub struct DelegationListing(pub Vec<Delegation>);
+pub struct DelegationListing(Vec<Delegation>);
 
 #[rustfmt::skip]
 #[cfg_attr(feature = "nota-text", derive(nota_next::NotaDecode, nota_next::NotaEncode))]
@@ -204,15 +281,19 @@ pub enum Observation {
 }
 
 #[rustfmt::skip]
-pub type Domains = DomainQuery;
-
-#[rustfmt::skip]
-pub type Delegations = DelegationQuery;
+#[cfg_attr(feature = "nota-text", derive(nota_next::NotaDecode, nota_next::NotaEncode))]
+#[derive(rkyv::Archive, rkyv::Serialize, rkyv::Deserialize, Clone, Debug, PartialEq, Eq)]
+pub struct Domains(DomainQuery);
 
 #[rustfmt::skip]
 #[cfg_attr(feature = "nota-text", derive(nota_next::NotaDecode, nota_next::NotaEncode))]
 #[derive(rkyv::Archive, rkyv::Serialize, rkyv::Deserialize, Clone, Debug, PartialEq, Eq)]
-pub struct Validation(pub Domain);
+pub struct Delegations(DelegationQuery);
+
+#[rustfmt::skip]
+#[cfg_attr(feature = "nota-text", derive(nota_next::NotaDecode, nota_next::NotaEncode))]
+#[derive(rkyv::Archive, rkyv::Serialize, rkyv::Deserialize, Clone, Debug, PartialEq, Eq)]
+pub struct Validation(Domain);
 
 #[rustfmt::skip]
 #[cfg_attr(feature = "nota-text", derive(nota_next::NotaDecode, nota_next::NotaEncode))]
@@ -225,7 +306,16 @@ pub enum ObservationResult {
 
 #[rustfmt::skip]
 #[cfg_attr(feature = "nota-text", derive(nota_next::NotaDecode, nota_next::NotaEncode))]
-#[derive(rkyv::Archive, rkyv::Serialize, rkyv::Deserialize, Clone, Debug, PartialEq, Eq)]
+#[derive(
+    rkyv::Archive,
+    rkyv::Serialize,
+    rkyv::Deserialize,
+    Clone,
+    Copy,
+    Debug,
+    PartialEq,
+    Eq,
+)]
 pub enum RejectionReason {
     DomainUnknown,
     DelegationUnknown,
@@ -242,7 +332,16 @@ pub struct RejectedRequest {
 
 #[rustfmt::skip]
 #[cfg_attr(feature = "nota-text", derive(nota_next::NotaDecode, nota_next::NotaEncode))]
-#[derive(rkyv::Archive, rkyv::Serialize, rkyv::Deserialize, Clone, Debug, PartialEq, Eq)]
+#[derive(
+    rkyv::Archive,
+    rkyv::Serialize,
+    rkyv::Deserialize,
+    Clone,
+    Copy,
+    Debug,
+    PartialEq,
+    Eq,
+)]
 pub enum OperationKind {
     Observe,
     Resolve,
@@ -253,7 +352,7 @@ pub enum OperationKind {
 #[rustfmt::skip]
 #[cfg_attr(feature = "nota-text", derive(nota_next::NotaDecode, nota_next::NotaEncode))]
 #[derive(rkyv::Archive, rkyv::Serialize, rkyv::Deserialize, Clone, Debug, PartialEq, Eq)]
-pub struct ValidationReport(pub Vec<ValidationFinding>);
+pub struct ValidationReport(Vec<ValidationFinding>);
 
 #[rustfmt::skip]
 #[cfg_attr(feature = "nota-text", derive(nota_next::NotaDecode, nota_next::NotaEncode))]
@@ -265,7 +364,16 @@ pub struct ValidationFinding {
 
 #[rustfmt::skip]
 #[cfg_attr(feature = "nota-text", derive(nota_next::NotaDecode, nota_next::NotaEncode))]
-#[derive(rkyv::Archive, rkyv::Serialize, rkyv::Deserialize, Clone, Debug, PartialEq, Eq)]
+#[derive(
+    rkyv::Archive,
+    rkyv::Serialize,
+    rkyv::Deserialize,
+    Clone,
+    Copy,
+    Debug,
+    PartialEq,
+    Eq,
+)]
 pub enum FindingSeverity {
     Notice,
     Warning,
@@ -273,7 +381,9 @@ pub enum FindingSeverity {
 }
 
 #[rustfmt::skip]
-pub type Message = String;
+#[cfg_attr(feature = "nota-text", derive(nota_next::NotaDecode, nota_next::NotaEncode))]
+#[derive(rkyv::Archive, rkyv::Serialize, rkyv::Deserialize, Clone, Debug, PartialEq, Eq)]
+pub struct Message(String);
 
 #[rustfmt::skip]
 #[cfg_attr(feature = "nota-text", derive(nota_next::NotaDecode, nota_next::NotaEncode))]
@@ -294,6 +404,310 @@ pub enum Output {
     Projected(Projected),
     Validated(Validated),
     RequestRejected(RequestRejected),
+}
+
+#[rustfmt::skip]
+impl Observe {
+    pub fn new(payload: Observation) -> Self {
+        Self(payload)
+    }
+    pub fn payload(&self) -> &Observation {
+        &self.0
+    }
+    pub fn into_payload(self) -> Observation {
+        self.0
+    }
+}
+#[rustfmt::skip]
+impl From<Observation> for Observe {
+    fn from(payload: Observation) -> Self {
+        Self::new(payload)
+    }
+}
+
+#[rustfmt::skip]
+impl Resolve {
+    pub fn new(payload: ResolutionQuery) -> Self {
+        Self(payload)
+    }
+    pub fn payload(&self) -> &ResolutionQuery {
+        &self.0
+    }
+    pub fn into_payload(self) -> ResolutionQuery {
+        self.0
+    }
+}
+#[rustfmt::skip]
+impl From<ResolutionQuery> for Resolve {
+    fn from(payload: ResolutionQuery) -> Self {
+        Self::new(payload)
+    }
+}
+
+#[rustfmt::skip]
+impl Project {
+    pub fn new(payload: ProjectionQuery) -> Self {
+        Self(payload)
+    }
+    pub fn payload(&self) -> &ProjectionQuery {
+        &self.0
+    }
+    pub fn into_payload(self) -> ProjectionQuery {
+        self.0
+    }
+}
+#[rustfmt::skip]
+impl From<ProjectionQuery> for Project {
+    fn from(payload: ProjectionQuery) -> Self {
+        Self::new(payload)
+    }
+}
+
+#[rustfmt::skip]
+impl Validate {
+    pub fn new(payload: Validation) -> Self {
+        Self(payload)
+    }
+    pub fn payload(&self) -> &Validation {
+        &self.0
+    }
+    pub fn into_payload(self) -> Validation {
+        self.0
+    }
+}
+#[rustfmt::skip]
+impl From<Validation> for Validate {
+    fn from(payload: Validation) -> Self {
+        Self::new(payload)
+    }
+}
+
+#[rustfmt::skip]
+impl Observed {
+    pub fn new(payload: ObservationResult) -> Self {
+        Self(payload)
+    }
+    pub fn payload(&self) -> &ObservationResult {
+        &self.0
+    }
+    pub fn into_payload(self) -> ObservationResult {
+        self.0
+    }
+}
+#[rustfmt::skip]
+impl From<ObservationResult> for Observed {
+    fn from(payload: ObservationResult) -> Self {
+        Self::new(payload)
+    }
+}
+
+#[rustfmt::skip]
+impl Resolved {
+    pub fn new(payload: ResolutionResult) -> Self {
+        Self(payload)
+    }
+    pub fn payload(&self) -> &ResolutionResult {
+        &self.0
+    }
+    pub fn into_payload(self) -> ResolutionResult {
+        self.0
+    }
+}
+#[rustfmt::skip]
+impl From<ResolutionResult> for Resolved {
+    fn from(payload: ResolutionResult) -> Self {
+        Self::new(payload)
+    }
+}
+
+#[rustfmt::skip]
+impl Projected {
+    pub fn new(payload: Projection) -> Self {
+        Self(payload)
+    }
+    pub fn payload(&self) -> &Projection {
+        &self.0
+    }
+    pub fn into_payload(self) -> Projection {
+        self.0
+    }
+}
+#[rustfmt::skip]
+impl From<Projection> for Projected {
+    fn from(payload: Projection) -> Self {
+        Self::new(payload)
+    }
+}
+
+#[rustfmt::skip]
+impl Validated {
+    pub fn new(payload: ValidationReport) -> Self {
+        Self(payload)
+    }
+    pub fn payload(&self) -> &ValidationReport {
+        &self.0
+    }
+    pub fn into_payload(self) -> ValidationReport {
+        self.0
+    }
+}
+#[rustfmt::skip]
+impl From<ValidationReport> for Validated {
+    fn from(payload: ValidationReport) -> Self {
+        Self::new(payload)
+    }
+}
+
+#[rustfmt::skip]
+impl RequestRejected {
+    pub fn new(payload: RejectedRequest) -> Self {
+        Self(payload)
+    }
+    pub fn payload(&self) -> &RejectedRequest {
+        &self.0
+    }
+    pub fn into_payload(self) -> RejectedRequest {
+        self.0
+    }
+}
+#[rustfmt::skip]
+impl From<RejectedRequest> for RequestRejected {
+    fn from(payload: RejectedRequest) -> Self {
+        Self::new(payload)
+    }
+}
+
+#[rustfmt::skip]
+impl Domain {
+    pub fn new(payload: impl Into<String>) -> Self {
+        Self(payload.into())
+    }
+    pub fn payload(&self) -> &String {
+        &self.0
+    }
+    pub fn into_payload(self) -> String {
+        self.0
+    }
+}
+#[rustfmt::skip]
+impl From<String> for Domain {
+    fn from(payload: String) -> Self {
+        Self::new(payload)
+    }
+}
+
+#[rustfmt::skip]
+impl DomainName {
+    pub fn new(payload: impl Into<String>) -> Self {
+        Self(payload.into())
+    }
+    pub fn payload(&self) -> &String {
+        &self.0
+    }
+    pub fn into_payload(self) -> String {
+        self.0
+    }
+}
+#[rustfmt::skip]
+impl From<String> for DomainName {
+    fn from(payload: String) -> Self {
+        Self::new(payload)
+    }
+}
+
+#[rustfmt::skip]
+impl NetworkAddress {
+    pub fn new(payload: impl Into<String>) -> Self {
+        Self(payload.into())
+    }
+    pub fn payload(&self) -> &String {
+        &self.0
+    }
+    pub fn into_payload(self) -> String {
+        self.0
+    }
+}
+#[rustfmt::skip]
+impl From<String> for NetworkAddress {
+    fn from(payload: String) -> Self {
+        Self::new(payload)
+    }
+}
+
+#[rustfmt::skip]
+impl RecordValue {
+    pub fn new(payload: impl Into<String>) -> Self {
+        Self(payload.into())
+    }
+    pub fn payload(&self) -> &String {
+        &self.0
+    }
+    pub fn into_payload(self) -> String {
+        self.0
+    }
+}
+#[rustfmt::skip]
+impl From<String> for RecordValue {
+    fn from(payload: String) -> Self {
+        Self::new(payload)
+    }
+}
+
+#[rustfmt::skip]
+impl UniformResourceLocator {
+    pub fn new(payload: impl Into<String>) -> Self {
+        Self(payload.into())
+    }
+    pub fn payload(&self) -> &String {
+        &self.0
+    }
+    pub fn into_payload(self) -> String {
+        self.0
+    }
+}
+#[rustfmt::skip]
+impl From<String> for UniformResourceLocator {
+    fn from(payload: String) -> Self {
+        Self::new(payload)
+    }
+}
+
+#[rustfmt::skip]
+impl DelegationName {
+    pub fn new(payload: impl Into<String>) -> Self {
+        Self(payload.into())
+    }
+    pub fn payload(&self) -> &String {
+        &self.0
+    }
+    pub fn into_payload(self) -> String {
+        self.0
+    }
+}
+#[rustfmt::skip]
+impl From<String> for DelegationName {
+    fn from(payload: String) -> Self {
+        Self::new(payload)
+    }
+}
+
+#[rustfmt::skip]
+impl DelegationTarget {
+    pub fn new(payload: impl Into<String>) -> Self {
+        Self(payload.into())
+    }
+    pub fn payload(&self) -> &String {
+        &self.0
+    }
+    pub fn into_payload(self) -> String {
+        self.0
+    }
+}
+#[rustfmt::skip]
+impl From<String> for DelegationTarget {
+    fn from(payload: String) -> Self {
+        Self::new(payload)
+    }
 }
 
 #[rustfmt::skip]
@@ -373,6 +787,44 @@ impl From<Vec<Delegation>> for DelegationListing {
 }
 
 #[rustfmt::skip]
+impl Domains {
+    pub fn new(payload: DomainQuery) -> Self {
+        Self(payload)
+    }
+    pub fn payload(&self) -> &DomainQuery {
+        &self.0
+    }
+    pub fn into_payload(self) -> DomainQuery {
+        self.0
+    }
+}
+#[rustfmt::skip]
+impl From<DomainQuery> for Domains {
+    fn from(payload: DomainQuery) -> Self {
+        Self::new(payload)
+    }
+}
+
+#[rustfmt::skip]
+impl Delegations {
+    pub fn new(payload: DelegationQuery) -> Self {
+        Self(payload)
+    }
+    pub fn payload(&self) -> &DelegationQuery {
+        &self.0
+    }
+    pub fn into_payload(self) -> DelegationQuery {
+        self.0
+    }
+}
+#[rustfmt::skip]
+impl From<DelegationQuery> for Delegations {
+    fn from(payload: DelegationQuery) -> Self {
+        Self::new(payload)
+    }
+}
+
+#[rustfmt::skip]
 impl Validation {
     pub fn new(payload: Domain) -> Self {
         Self(payload)
@@ -411,15 +863,34 @@ impl From<Vec<ValidationFinding>> for ValidationReport {
 }
 
 #[rustfmt::skip]
+impl Message {
+    pub fn new(payload: impl Into<String>) -> Self {
+        Self(payload.into())
+    }
+    pub fn payload(&self) -> &String {
+        &self.0
+    }
+    pub fn into_payload(self) -> String {
+        self.0
+    }
+}
+#[rustfmt::skip]
+impl From<String> for Message {
+    fn from(payload: String) -> Self {
+        Self::new(payload)
+    }
+}
+
+#[rustfmt::skip]
 impl Observation {
-    pub fn domains(payload: Domains) -> Self {
-        Self::Domains(payload)
+    pub fn domains(payload: DomainQuery) -> Self {
+        Self::Domains(Domains::new(payload))
     }
-    pub fn delegations(payload: Delegations) -> Self {
-        Self::Delegations(payload)
+    pub fn delegations(payload: DelegationQuery) -> Self {
+        Self::Delegations(Delegations::new(payload))
     }
-    pub fn projection(payload: Project) -> Self {
-        Self::Projection(payload)
+    pub fn projection(payload: ProjectionQuery) -> Self {
+        Self::Projection(Project::new(payload))
     }
 }
 
@@ -438,36 +909,57 @@ impl ObservationResult {
 
 #[rustfmt::skip]
 impl Input {
-    pub fn observe(payload: Observe) -> Self {
-        Self::Observe(payload)
+    pub fn observe(payload: Observation) -> Self {
+        Self::Observe(Observe::new(payload))
     }
-    pub fn resolve(payload: Resolve) -> Self {
-        Self::Resolve(payload)
+    pub fn resolve(payload: ResolutionQuery) -> Self {
+        Self::Resolve(Resolve::new(payload))
     }
-    pub fn project(payload: Project) -> Self {
-        Self::Project(payload)
+    pub fn project(payload: ProjectionQuery) -> Self {
+        Self::Project(Project::new(payload))
     }
-    pub fn validate(payload: Validate) -> Self {
-        Self::Validate(payload)
+    pub fn validate(payload: Validation) -> Self {
+        Self::Validate(Validate::new(payload))
     }
 }
 
 #[rustfmt::skip]
 impl Output {
-    pub fn observed(payload: Observed) -> Self {
-        Self::Observed(payload)
+    pub fn observed(payload: ObservationResult) -> Self {
+        Self::Observed(Observed::new(payload))
     }
-    pub fn resolved(payload: Resolved) -> Self {
-        Self::Resolved(payload)
+    pub fn resolved(payload: ResolutionResult) -> Self {
+        Self::Resolved(Resolved::new(payload))
     }
-    pub fn projected(payload: Projected) -> Self {
-        Self::Projected(payload)
+    pub fn projected(payload: Projection) -> Self {
+        Self::Projected(Projected::new(payload))
     }
-    pub fn validated(payload: Validated) -> Self {
-        Self::Validated(payload)
+    pub fn validated(payload: ValidationReport) -> Self {
+        Self::Validated(Validated::new(payload))
     }
-    pub fn request_rejected(payload: RequestRejected) -> Self {
-        Self::RequestRejected(payload)
+    pub fn request_rejected(payload: RejectedRequest) -> Self {
+        Self::RequestRejected(RequestRejected::new(payload))
+    }
+}
+
+#[rustfmt::skip]
+impl From<Domains> for Observation {
+    fn from(payload: Domains) -> Self {
+        Self::Domains(payload)
+    }
+}
+
+#[rustfmt::skip]
+impl From<Delegations> for Observation {
+    fn from(payload: Delegations) -> Self {
+        Self::Delegations(payload)
+    }
+}
+
+#[rustfmt::skip]
+impl From<Project> for Observation {
+    fn from(payload: Project) -> Self {
+        Self::Projection(payload)
     }
 }
 
@@ -493,299 +985,65 @@ impl From<Projection> for ObservationResult {
 }
 
 #[rustfmt::skip]
-#[cfg(feature = "nota-text")]
-impl ResolutionScope {
-    pub fn from_nota_block(block: &nota_next::Block) -> Result<Self, NotaDecodeError> {
-        <Self as NotaDecode>::from_nota_block(block)
-    }
-    pub fn to_nota(&self) -> String {
-        <Self as NotaEncode>::to_nota(self)
+impl From<Observe> for Input {
+    fn from(payload: Observe) -> Self {
+        Self::Observe(payload)
     }
 }
 
 #[rustfmt::skip]
-#[cfg(feature = "nota-text")]
-impl RecordKind {
-    pub fn from_nota_block(block: &nota_next::Block) -> Result<Self, NotaDecodeError> {
-        <Self as NotaDecode>::from_nota_block(block)
-    }
-    pub fn to_nota(&self) -> String {
-        <Self as NotaEncode>::to_nota(self)
+impl From<Resolve> for Input {
+    fn from(payload: Resolve) -> Self {
+        Self::Resolve(payload)
     }
 }
 
 #[rustfmt::skip]
-#[cfg(feature = "nota-text")]
-impl RedirectStatus {
-    pub fn from_nota_block(block: &nota_next::Block) -> Result<Self, NotaDecodeError> {
-        <Self as NotaDecode>::from_nota_block(block)
-    }
-    pub fn to_nota(&self) -> String {
-        <Self as NotaEncode>::to_nota(self)
+impl From<Project> for Input {
+    fn from(payload: Project) -> Self {
+        Self::Project(payload)
     }
 }
 
 #[rustfmt::skip]
-#[cfg(feature = "nota-text")]
-impl PathTreatment {
-    pub fn from_nota_block(block: &nota_next::Block) -> Result<Self, NotaDecodeError> {
-        <Self as NotaDecode>::from_nota_block(block)
-    }
-    pub fn to_nota(&self) -> String {
-        <Self as NotaEncode>::to_nota(self)
+impl From<Validate> for Input {
+    fn from(payload: Validate) -> Self {
+        Self::Validate(payload)
     }
 }
 
 #[rustfmt::skip]
-#[cfg(feature = "nota-text")]
-impl ProjectionScope {
-    pub fn from_nota_block(block: &nota_next::Block) -> Result<Self, NotaDecodeError> {
-        <Self as NotaDecode>::from_nota_block(block)
-    }
-    pub fn to_nota(&self) -> String {
-        <Self as NotaEncode>::to_nota(self)
+impl From<Observed> for Output {
+    fn from(payload: Observed) -> Self {
+        Self::Observed(payload)
     }
 }
 
 #[rustfmt::skip]
-#[cfg(feature = "nota-text")]
-impl ResolutionQuery {
-    pub fn from_nota_block(block: &nota_next::Block) -> Result<Self, NotaDecodeError> {
-        <Self as NotaDecode>::from_nota_block(block)
-    }
-    pub fn to_nota(&self) -> String {
-        <Self as NotaEncode>::to_nota(self)
+impl From<Resolved> for Output {
+    fn from(payload: Resolved) -> Self {
+        Self::Resolved(payload)
     }
 }
 
 #[rustfmt::skip]
-#[cfg(feature = "nota-text")]
-impl Address {
-    pub fn from_nota_block(block: &nota_next::Block) -> Result<Self, NotaDecodeError> {
-        <Self as NotaDecode>::from_nota_block(block)
-    }
-    pub fn to_nota(&self) -> String {
-        <Self as NotaEncode>::to_nota(self)
+impl From<Projected> for Output {
+    fn from(payload: Projected) -> Self {
+        Self::Projected(payload)
     }
 }
 
 #[rustfmt::skip]
-#[cfg(feature = "nota-text")]
-impl ResolutionResult {
-    pub fn from_nota_block(block: &nota_next::Block) -> Result<Self, NotaDecodeError> {
-        <Self as NotaDecode>::from_nota_block(block)
-    }
-    pub fn to_nota(&self) -> String {
-        <Self as NotaEncode>::to_nota(self)
+impl From<Validated> for Output {
+    fn from(payload: Validated) -> Self {
+        Self::Validated(payload)
     }
 }
 
 #[rustfmt::skip]
-#[cfg(feature = "nota-text")]
-impl DomainQuery {
-    pub fn from_nota_block(block: &nota_next::Block) -> Result<Self, NotaDecodeError> {
-        <Self as NotaDecode>::from_nota_block(block)
-    }
-    pub fn to_nota(&self) -> String {
-        <Self as NotaEncode>::to_nota(self)
-    }
-}
-
-#[rustfmt::skip]
-#[cfg(feature = "nota-text")]
-impl DomainListing {
-    pub fn from_nota_block(block: &nota_next::Block) -> Result<Self, NotaDecodeError> {
-        <Self as NotaDecode>::from_nota_block(block)
-    }
-    pub fn to_nota(&self) -> String {
-        <Self as NotaEncode>::to_nota(self)
-    }
-}
-
-#[rustfmt::skip]
-#[cfg(feature = "nota-text")]
-impl Delegation {
-    pub fn from_nota_block(block: &nota_next::Block) -> Result<Self, NotaDecodeError> {
-        <Self as NotaDecode>::from_nota_block(block)
-    }
-    pub fn to_nota(&self) -> String {
-        <Self as NotaEncode>::to_nota(self)
-    }
-}
-
-#[rustfmt::skip]
-#[cfg(feature = "nota-text")]
-impl DelegationQuery {
-    pub fn from_nota_block(block: &nota_next::Block) -> Result<Self, NotaDecodeError> {
-        <Self as NotaDecode>::from_nota_block(block)
-    }
-    pub fn to_nota(&self) -> String {
-        <Self as NotaEncode>::to_nota(self)
-    }
-}
-
-#[rustfmt::skip]
-#[cfg(feature = "nota-text")]
-impl DelegationListing {
-    pub fn from_nota_block(block: &nota_next::Block) -> Result<Self, NotaDecodeError> {
-        <Self as NotaDecode>::from_nota_block(block)
-    }
-    pub fn to_nota(&self) -> String {
-        <Self as NotaEncode>::to_nota(self)
-    }
-}
-
-#[rustfmt::skip]
-#[cfg(feature = "nota-text")]
-impl DomainNameSystemRecord {
-    pub fn from_nota_block(block: &nota_next::Block) -> Result<Self, NotaDecodeError> {
-        <Self as NotaDecode>::from_nota_block(block)
-    }
-    pub fn to_nota(&self) -> String {
-        <Self as NotaEncode>::to_nota(self)
-    }
-}
-
-#[rustfmt::skip]
-#[cfg(feature = "nota-text")]
-impl RedirectRule {
-    pub fn from_nota_block(block: &nota_next::Block) -> Result<Self, NotaDecodeError> {
-        <Self as NotaDecode>::from_nota_block(block)
-    }
-    pub fn to_nota(&self) -> String {
-        <Self as NotaEncode>::to_nota(self)
-    }
-}
-
-#[rustfmt::skip]
-#[cfg(feature = "nota-text")]
-impl ProjectionQuery {
-    pub fn from_nota_block(block: &nota_next::Block) -> Result<Self, NotaDecodeError> {
-        <Self as NotaDecode>::from_nota_block(block)
-    }
-    pub fn to_nota(&self) -> String {
-        <Self as NotaEncode>::to_nota(self)
-    }
-}
-
-#[rustfmt::skip]
-#[cfg(feature = "nota-text")]
-impl Projection {
-    pub fn from_nota_block(block: &nota_next::Block) -> Result<Self, NotaDecodeError> {
-        <Self as NotaDecode>::from_nota_block(block)
-    }
-    pub fn to_nota(&self) -> String {
-        <Self as NotaEncode>::to_nota(self)
-    }
-}
-
-#[rustfmt::skip]
-#[cfg(feature = "nota-text")]
-impl Observation {
-    pub fn from_nota_block(block: &nota_next::Block) -> Result<Self, NotaDecodeError> {
-        <Self as NotaDecode>::from_nota_block(block)
-    }
-    pub fn to_nota(&self) -> String {
-        <Self as NotaEncode>::to_nota(self)
-    }
-}
-
-#[rustfmt::skip]
-#[cfg(feature = "nota-text")]
-impl Validation {
-    pub fn from_nota_block(block: &nota_next::Block) -> Result<Self, NotaDecodeError> {
-        <Self as NotaDecode>::from_nota_block(block)
-    }
-    pub fn to_nota(&self) -> String {
-        <Self as NotaEncode>::to_nota(self)
-    }
-}
-
-#[rustfmt::skip]
-#[cfg(feature = "nota-text")]
-impl ObservationResult {
-    pub fn from_nota_block(block: &nota_next::Block) -> Result<Self, NotaDecodeError> {
-        <Self as NotaDecode>::from_nota_block(block)
-    }
-    pub fn to_nota(&self) -> String {
-        <Self as NotaEncode>::to_nota(self)
-    }
-}
-
-#[rustfmt::skip]
-#[cfg(feature = "nota-text")]
-impl RejectionReason {
-    pub fn from_nota_block(block: &nota_next::Block) -> Result<Self, NotaDecodeError> {
-        <Self as NotaDecode>::from_nota_block(block)
-    }
-    pub fn to_nota(&self) -> String {
-        <Self as NotaEncode>::to_nota(self)
-    }
-}
-
-#[rustfmt::skip]
-#[cfg(feature = "nota-text")]
-impl RejectedRequest {
-    pub fn from_nota_block(block: &nota_next::Block) -> Result<Self, NotaDecodeError> {
-        <Self as NotaDecode>::from_nota_block(block)
-    }
-    pub fn to_nota(&self) -> String {
-        <Self as NotaEncode>::to_nota(self)
-    }
-}
-
-#[rustfmt::skip]
-#[cfg(feature = "nota-text")]
-impl OperationKind {
-    pub fn from_nota_block(block: &nota_next::Block) -> Result<Self, NotaDecodeError> {
-        <Self as NotaDecode>::from_nota_block(block)
-    }
-    pub fn to_nota(&self) -> String {
-        <Self as NotaEncode>::to_nota(self)
-    }
-}
-
-#[rustfmt::skip]
-#[cfg(feature = "nota-text")]
-impl ValidationReport {
-    pub fn from_nota_block(block: &nota_next::Block) -> Result<Self, NotaDecodeError> {
-        <Self as NotaDecode>::from_nota_block(block)
-    }
-    pub fn to_nota(&self) -> String {
-        <Self as NotaEncode>::to_nota(self)
-    }
-}
-
-#[rustfmt::skip]
-#[cfg(feature = "nota-text")]
-impl ValidationFinding {
-    pub fn from_nota_block(block: &nota_next::Block) -> Result<Self, NotaDecodeError> {
-        <Self as NotaDecode>::from_nota_block(block)
-    }
-    pub fn to_nota(&self) -> String {
-        <Self as NotaEncode>::to_nota(self)
-    }
-}
-
-#[rustfmt::skip]
-#[cfg(feature = "nota-text")]
-impl FindingSeverity {
-    pub fn from_nota_block(block: &nota_next::Block) -> Result<Self, NotaDecodeError> {
-        <Self as NotaDecode>::from_nota_block(block)
-    }
-    pub fn to_nota(&self) -> String {
-        <Self as NotaEncode>::to_nota(self)
-    }
-}
-
-#[rustfmt::skip]
-#[cfg(feature = "nota-text")]
-impl Input {
-    pub fn from_nota_block(block: &nota_next::Block) -> Result<Self, NotaDecodeError> {
-        <Self as NotaDecode>::from_nota_block(block)
-    }
-    pub fn to_nota(&self) -> String {
-        <Self as NotaEncode>::to_nota(self)
+impl From<RequestRejected> for Output {
+    fn from(payload: RequestRejected) -> Self {
+        Self::RequestRejected(payload)
     }
 }
 
@@ -802,17 +1060,6 @@ impl std::str::FromStr for Input {
 impl std::fmt::Display for Input {
     fn fmt(&self, formatter: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {
         formatter.write_str(&<Self as NotaEncode>::to_nota(self))
-    }
-}
-
-#[rustfmt::skip]
-#[cfg(feature = "nota-text")]
-impl Output {
-    pub fn from_nota_block(block: &nota_next::Block) -> Result<Self, NotaDecodeError> {
-        <Self as NotaDecode>::from_nota_block(block)
-    }
-    pub fn to_nota(&self) -> String {
-        <Self as NotaEncode>::to_nota(self)
     }
 }
 
@@ -1061,5 +1308,63 @@ impl Output {
             });
         }
         Ok((route, value))
+    }
+}
+
+#[rustfmt::skip]
+impl signal_frame::RequestPayload for Input {}
+#[rustfmt::skip]
+impl signal_frame::SignalOperationHeads for Input {
+    const HEADS: &'static [&'static str] = &[
+        "Observe",
+        "Resolve",
+        "Project",
+        "Validate",
+    ];
+}
+#[rustfmt::skip]
+impl signal_frame::LogVariant for Input {
+    fn log_variant(&self) -> u64 {
+        self.short_header()
+    }
+}
+#[rustfmt::skip]
+pub type Frame = signal_frame::ExchangeFrame<Input, Output>;
+#[rustfmt::skip]
+pub type FrameBody = signal_frame::ExchangeFrameBody<Input, Output>;
+#[rustfmt::skip]
+pub type Request = signal_frame::Request<Input>;
+#[rustfmt::skip]
+pub type ReplyEnvelope = signal_frame::Reply<Output>;
+#[rustfmt::skip]
+pub type RequestBuilder = signal_frame::RequestBuilder<Input>;
+#[rustfmt::skip]
+impl Input {
+    pub fn into_frame(self, exchange: signal_frame::ExchangeIdentifier) -> Frame {
+        let short_header = signal_frame::ShortHeader::new(self.short_header());
+        let request = signal_frame::Request::from_payload(self);
+        Frame::with_short_header(
+            short_header,
+            FrameBody::Request {
+                exchange,
+                request,
+            },
+        )
+    }
+}
+#[rustfmt::skip]
+impl Output {
+    pub fn into_reply_frame(self, exchange: signal_frame::ExchangeIdentifier) -> Frame {
+        let short_header = signal_frame::ShortHeader::new(self.short_header());
+        let reply = signal_frame::Reply::committed(
+            signal_frame::NonEmpty::single(signal_frame::SubReply::Ok(self)),
+        );
+        Frame::with_short_header(
+            short_header,
+            FrameBody::Reply {
+                exchange,
+                reply,
+            },
+        )
     }
 }

@@ -3,6 +3,8 @@
 //! This crate carries provider-neutral Criome-domain observation, resolution,
 //! and projection records.
 
+#[cfg(not(feature = "nota-text"))]
+use nota_next::{Block, NotaDecodeError};
 use nota_next::{NotaDecode, NotaEncode};
 use rkyv::{Archive, Deserialize as RkyvDeserialize, Serialize as RkyvSerialize};
 use signal_frame::signal_channel;
@@ -320,6 +322,48 @@ signal_channel! {
         Resolved(ResolutionResult),
         Projected(Projection),
         RequestRejected(RequestRejected),
+    }
+}
+
+#[cfg(not(feature = "nota-text"))]
+impl OperationKind {
+    const fn as_nota_atom(self) -> &'static str {
+        match self {
+            Self::Observe => "Observe",
+            Self::Resolve => "Resolve",
+            Self::Project => "Project",
+        }
+    }
+
+    fn from_nota_atom(atom: &str) -> Result<Self, NotaDecodeError> {
+        match atom {
+            "Observe" => Ok(Self::Observe),
+            "Resolve" => Ok(Self::Resolve),
+            "Project" => Ok(Self::Project),
+            variant => Err(NotaDecodeError::UnknownVariant {
+                enum_name: "OperationKind",
+                variant: variant.to_owned(),
+            }),
+        }
+    }
+}
+
+#[cfg(not(feature = "nota-text"))]
+impl NotaEncode for OperationKind {
+    fn to_nota(&self) -> String {
+        self.as_nota_atom().to_owned()
+    }
+}
+
+#[cfg(not(feature = "nota-text"))]
+impl NotaDecode for OperationKind {
+    fn from_nota_block(block: &Block) -> Result<Self, NotaDecodeError> {
+        let atom = block
+            .demote_to_string()
+            .ok_or(NotaDecodeError::ExpectedAtom {
+                type_name: "OperationKind",
+            })?;
+        Self::from_nota_atom(atom)
     }
 }
 
