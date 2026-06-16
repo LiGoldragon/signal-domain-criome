@@ -389,21 +389,21 @@ pub struct Message(String);
 #[cfg_attr(feature = "nota-text", derive(nota_next::NotaDecode, nota_next::NotaEncode))]
 #[derive(rkyv::Archive, rkyv::Serialize, rkyv::Deserialize, Clone, Debug, PartialEq, Eq)]
 pub enum Input {
-    Observe(Observe),
-    Resolve(Resolve),
-    Project(Project),
-    Validate(Validate),
+    Observe(Observation),
+    Resolve(ResolutionQuery),
+    Project(ProjectionQuery),
+    Validate(Validation),
 }
 
 #[rustfmt::skip]
 #[cfg_attr(feature = "nota-text", derive(nota_next::NotaDecode, nota_next::NotaEncode))]
 #[derive(rkyv::Archive, rkyv::Serialize, rkyv::Deserialize, Clone, Debug, PartialEq, Eq)]
 pub enum Output {
-    Observed(Observed),
-    Resolved(Resolved),
-    Projected(Projected),
-    Validated(Validated),
-    RequestRejected(RequestRejected),
+    Observed(ObservationResult),
+    Resolved(ResolutionResult),
+    Projected(Projection),
+    Validated(ValidationReport),
+    RequestRejected(RejectedRequest),
 }
 
 #[rustfmt::skip]
@@ -595,6 +595,24 @@ impl From<String> for Domain {
         Self::new(payload)
     }
 }
+#[rustfmt::skip]
+impl std::fmt::Display for Domain {
+    fn fmt(&self, formatter: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {
+        self.payload().fmt(formatter)
+    }
+}
+#[rustfmt::skip]
+impl AsRef<str> for Domain {
+    fn as_ref(&self) -> &str {
+        self.payload().as_str()
+    }
+}
+#[rustfmt::skip]
+impl PartialEq<&str> for Domain {
+    fn eq(&self, other: &&str) -> bool {
+        self.payload() == other
+    }
+}
 
 #[rustfmt::skip]
 impl DomainName {
@@ -612,6 +630,24 @@ impl DomainName {
 impl From<String> for DomainName {
     fn from(payload: String) -> Self {
         Self::new(payload)
+    }
+}
+#[rustfmt::skip]
+impl std::fmt::Display for DomainName {
+    fn fmt(&self, formatter: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {
+        self.payload().fmt(formatter)
+    }
+}
+#[rustfmt::skip]
+impl AsRef<str> for DomainName {
+    fn as_ref(&self) -> &str {
+        self.payload().as_str()
+    }
+}
+#[rustfmt::skip]
+impl PartialEq<&str> for DomainName {
+    fn eq(&self, other: &&str) -> bool {
+        self.payload() == other
     }
 }
 
@@ -633,6 +669,24 @@ impl From<String> for NetworkAddress {
         Self::new(payload)
     }
 }
+#[rustfmt::skip]
+impl std::fmt::Display for NetworkAddress {
+    fn fmt(&self, formatter: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {
+        self.payload().fmt(formatter)
+    }
+}
+#[rustfmt::skip]
+impl AsRef<str> for NetworkAddress {
+    fn as_ref(&self) -> &str {
+        self.payload().as_str()
+    }
+}
+#[rustfmt::skip]
+impl PartialEq<&str> for NetworkAddress {
+    fn eq(&self, other: &&str) -> bool {
+        self.payload() == other
+    }
+}
 
 #[rustfmt::skip]
 impl RecordValue {
@@ -650,6 +704,24 @@ impl RecordValue {
 impl From<String> for RecordValue {
     fn from(payload: String) -> Self {
         Self::new(payload)
+    }
+}
+#[rustfmt::skip]
+impl std::fmt::Display for RecordValue {
+    fn fmt(&self, formatter: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {
+        self.payload().fmt(formatter)
+    }
+}
+#[rustfmt::skip]
+impl AsRef<str> for RecordValue {
+    fn as_ref(&self) -> &str {
+        self.payload().as_str()
+    }
+}
+#[rustfmt::skip]
+impl PartialEq<&str> for RecordValue {
+    fn eq(&self, other: &&str) -> bool {
+        self.payload() == other
     }
 }
 
@@ -671,6 +743,24 @@ impl From<String> for UniformResourceLocator {
         Self::new(payload)
     }
 }
+#[rustfmt::skip]
+impl std::fmt::Display for UniformResourceLocator {
+    fn fmt(&self, formatter: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {
+        self.payload().fmt(formatter)
+    }
+}
+#[rustfmt::skip]
+impl AsRef<str> for UniformResourceLocator {
+    fn as_ref(&self) -> &str {
+        self.payload().as_str()
+    }
+}
+#[rustfmt::skip]
+impl PartialEq<&str> for UniformResourceLocator {
+    fn eq(&self, other: &&str) -> bool {
+        self.payload() == other
+    }
+}
 
 #[rustfmt::skip]
 impl DelegationName {
@@ -690,6 +780,24 @@ impl From<String> for DelegationName {
         Self::new(payload)
     }
 }
+#[rustfmt::skip]
+impl std::fmt::Display for DelegationName {
+    fn fmt(&self, formatter: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {
+        self.payload().fmt(formatter)
+    }
+}
+#[rustfmt::skip]
+impl AsRef<str> for DelegationName {
+    fn as_ref(&self) -> &str {
+        self.payload().as_str()
+    }
+}
+#[rustfmt::skip]
+impl PartialEq<&str> for DelegationName {
+    fn eq(&self, other: &&str) -> bool {
+        self.payload() == other
+    }
+}
 
 #[rustfmt::skip]
 impl DelegationTarget {
@@ -707,6 +815,24 @@ impl DelegationTarget {
 impl From<String> for DelegationTarget {
     fn from(payload: String) -> Self {
         Self::new(payload)
+    }
+}
+#[rustfmt::skip]
+impl std::fmt::Display for DelegationTarget {
+    fn fmt(&self, formatter: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {
+        self.payload().fmt(formatter)
+    }
+}
+#[rustfmt::skip]
+impl AsRef<str> for DelegationTarget {
+    fn as_ref(&self) -> &str {
+        self.payload().as_str()
+    }
+}
+#[rustfmt::skip]
+impl PartialEq<&str> for DelegationTarget {
+    fn eq(&self, other: &&str) -> bool {
+        self.payload() == other
     }
 }
 
@@ -880,6 +1006,24 @@ impl From<String> for Message {
         Self::new(payload)
     }
 }
+#[rustfmt::skip]
+impl std::fmt::Display for Message {
+    fn fmt(&self, formatter: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {
+        self.payload().fmt(formatter)
+    }
+}
+#[rustfmt::skip]
+impl AsRef<str> for Message {
+    fn as_ref(&self) -> &str {
+        self.payload().as_str()
+    }
+}
+#[rustfmt::skip]
+impl PartialEq<&str> for Message {
+    fn eq(&self, other: &&str) -> bool {
+        self.payload() == other
+    }
+}
 
 #[rustfmt::skip]
 impl Observation {
@@ -910,35 +1054,35 @@ impl ObservationResult {
 #[rustfmt::skip]
 impl Input {
     pub fn observe(payload: Observation) -> Self {
-        Self::Observe(Observe::new(payload))
+        Self::Observe(payload)
     }
     pub fn resolve(payload: ResolutionQuery) -> Self {
-        Self::Resolve(Resolve::new(payload))
+        Self::Resolve(payload)
     }
     pub fn project(payload: ProjectionQuery) -> Self {
-        Self::Project(Project::new(payload))
+        Self::Project(payload)
     }
-    pub fn validate(payload: Validation) -> Self {
-        Self::Validate(Validate::new(payload))
+    pub fn validate(payload: Domain) -> Self {
+        Self::Validate(Validation::new(payload))
     }
 }
 
 #[rustfmt::skip]
 impl Output {
     pub fn observed(payload: ObservationResult) -> Self {
-        Self::Observed(Observed::new(payload))
+        Self::Observed(payload)
     }
     pub fn resolved(payload: ResolutionResult) -> Self {
-        Self::Resolved(Resolved::new(payload))
+        Self::Resolved(payload)
     }
     pub fn projected(payload: Projection) -> Self {
-        Self::Projected(Projected::new(payload))
+        Self::Projected(payload)
     }
-    pub fn validated(payload: ValidationReport) -> Self {
-        Self::Validated(Validated::new(payload))
+    pub fn validated(payload: Vec<ValidationFinding>) -> Self {
+        Self::Validated(ValidationReport::new(payload))
     }
     pub fn request_rejected(payload: RejectedRequest) -> Self {
-        Self::RequestRejected(RequestRejected::new(payload))
+        Self::RequestRejected(payload)
     }
 }
 
@@ -985,64 +1129,64 @@ impl From<Projection> for ObservationResult {
 }
 
 #[rustfmt::skip]
-impl From<Observe> for Input {
-    fn from(payload: Observe) -> Self {
+impl From<Observation> for Input {
+    fn from(payload: Observation) -> Self {
         Self::Observe(payload)
     }
 }
 
 #[rustfmt::skip]
-impl From<Resolve> for Input {
-    fn from(payload: Resolve) -> Self {
+impl From<ResolutionQuery> for Input {
+    fn from(payload: ResolutionQuery) -> Self {
         Self::Resolve(payload)
     }
 }
 
 #[rustfmt::skip]
-impl From<Project> for Input {
-    fn from(payload: Project) -> Self {
+impl From<ProjectionQuery> for Input {
+    fn from(payload: ProjectionQuery) -> Self {
         Self::Project(payload)
     }
 }
 
 #[rustfmt::skip]
-impl From<Validate> for Input {
-    fn from(payload: Validate) -> Self {
+impl From<Validation> for Input {
+    fn from(payload: Validation) -> Self {
         Self::Validate(payload)
     }
 }
 
 #[rustfmt::skip]
-impl From<Observed> for Output {
-    fn from(payload: Observed) -> Self {
+impl From<ObservationResult> for Output {
+    fn from(payload: ObservationResult) -> Self {
         Self::Observed(payload)
     }
 }
 
 #[rustfmt::skip]
-impl From<Resolved> for Output {
-    fn from(payload: Resolved) -> Self {
+impl From<ResolutionResult> for Output {
+    fn from(payload: ResolutionResult) -> Self {
         Self::Resolved(payload)
     }
 }
 
 #[rustfmt::skip]
-impl From<Projected> for Output {
-    fn from(payload: Projected) -> Self {
+impl From<Projection> for Output {
+    fn from(payload: Projection) -> Self {
         Self::Projected(payload)
     }
 }
 
 #[rustfmt::skip]
-impl From<Validated> for Output {
-    fn from(payload: Validated) -> Self {
+impl From<ValidationReport> for Output {
+    fn from(payload: ValidationReport) -> Self {
         Self::Validated(payload)
     }
 }
 
 #[rustfmt::skip]
-impl From<RequestRejected> for Output {
-    fn from(payload: RequestRejected) -> Self {
+impl From<RejectedRequest> for Output {
+    fn from(payload: RejectedRequest) -> Self {
         Self::RequestRejected(payload)
     }
 }

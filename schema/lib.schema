@@ -1,6 +1,13 @@
 {}
-[Observe Resolve Project Validate]
-[Observed Resolved Projected Validated RequestRejected]
+[(Observe Observation)
+ (Resolve ResolutionQuery)
+ (Project ProjectionQuery)
+ (Validate Validation)]
+[(Observed ObservationResult)
+ (Resolved ResolutionResult)
+ (Projected Projection)
+ (Validated ValidationReport)
+ (RequestRejected RejectedRequest)]
 {
   Observe Observation
   Resolve ResolutionQuery
@@ -25,27 +32,27 @@
   PathTreatment [Preserve Replace]
   ProjectionScope [PublicRecords RedirectRules Everything]
 
-  ResolutionQuery { name DomainName ResolutionScope * }
+  ResolutionQuery { name DomainName resolution_scope ResolutionScope }
   Address { name DomainName address NetworkAddress }
-  ResolutionResult { query ResolutionQuery addresses (Vec Address) }
+  ResolutionResult { query ResolutionQuery addresses (Vector Address) }
   DomainQuery { root (Optional DomainName) }
-  DomainListing { domains (Vec DomainName) }
-  Delegation { DelegationName * DomainName * DelegationTarget * }
+  DomainListing { domains (Vector DomainName) }
+  Delegation { delegation_name DelegationName domain_name DomainName delegation_target DelegationTarget }
   DelegationQuery { domain (Optional DomainName) }
-  DelegationListing { delegations (Vec Delegation) }
-  DomainNameSystemRecord { name DomainName RecordKind * value RecordValue }
-  RedirectRule { source DomainName target UniformResourceLocator RedirectStatus * PathTreatment * }
-  ProjectionQuery { domain DomainName ProjectionScope * }
-  Projection { query ProjectionQuery records (Vec DomainNameSystemRecord) redirects (Vec RedirectRule) }
+  DelegationListing { delegations (Vector Delegation) }
+  DomainNameSystemRecord { name DomainName record_kind RecordKind value RecordValue }
+  RedirectRule { source DomainName target UniformResourceLocator redirect_status RedirectStatus path_treatment PathTreatment }
+  ProjectionQuery { domain DomainName projection_scope ProjectionScope }
+  Projection { query ProjectionQuery records (Vector DomainNameSystemRecord) redirects (Vector RedirectRule) }
   Observation [(Domains Domains) (Delegations Delegations) (Projection Project)]
   Domains DomainQuery
   Delegations DelegationQuery
-  Validation { Domain * }
+  Validation Domain
   ObservationResult [(Domains DomainListing) (Delegations DelegationListing) (Projection Projection)]
   RejectionReason [DomainUnknown DelegationUnknown ProjectionUnavailable]
   RejectedRequest { operation OperationKind reason RejectionReason }
   OperationKind [Observe Resolve Project Validate]
-  ValidationReport { findings (Vec ValidationFinding) }
+  ValidationReport { findings (Vector ValidationFinding) }
   ValidationFinding { severity FindingSeverity message Message }
   FindingSeverity [Notice Warning Error]
   Message String
