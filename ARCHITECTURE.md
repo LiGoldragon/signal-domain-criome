@@ -4,6 +4,12 @@
 `domain-criome` component. It exposes intelligent Criome-domain resolution and
 provider-neutral projection of desired domain state.
 
+## Direction
+
+`signal-domain-criome` is the **ordinary peer-callable wire contract** for the `domain-criome` component. Peers observe registered domains, delegations, and projected state; resolve a name in a named resolution scope; and project provider-neutral DNS records and redirects.
+
+The contract describes Criome-domain *meaning*, not how any provider applies it. Provider-specific execution belongs to `cloud`; provider names stay out of this contract entirely. Meta registry and projection-policy mutation live in `meta-signal-domain-criome`; registry tables, projection runtime, Nexus decisions, SEMA state, and daemon storage live in `domain-criome`.
+
 ## Boundary
 
 The contract describes Criome-domain meaning. It does not describe how
