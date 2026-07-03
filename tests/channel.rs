@@ -1,4 +1,4 @@
-use nota_next::{NotaEncode, NotaSource};
+use nota::{NotaEncode, NotaSource};
 use signal_domain_criome::{
     Address, Delegation, DelegationName, DelegationTarget, DomainName, DomainNameSystemRecord,
     NetworkAddress, Observation, Operation, OperationKind, Projection, ProjectionQuery,
