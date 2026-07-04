@@ -32,28 +32,28 @@
   PathTreatment [Preserve Replace]
   ProjectionScope [PublicRecords RedirectRules Everything]
 
-  ResolutionQuery { name DomainName resolution_scope ResolutionScope }
-  Address { name DomainName address NetworkAddress }
-  ResolutionResult { query ResolutionQuery addresses (Vector Address) }
-  DomainQuery { root (Optional DomainName) }
-  DomainListing { domains (Vector DomainName) }
-  Delegation { delegation_name DelegationName domain_name DomainName delegation_target DelegationTarget }
-  DelegationQuery { domain (Optional DomainName) }
-  DelegationListing { delegations (Vector Delegation) }
-  DomainNameSystemRecord { name DomainName record_kind RecordKind value RecordValue }
-  RedirectRule { source DomainName target UniformResourceLocator redirect_status RedirectStatus path_treatment PathTreatment }
-  ProjectionQuery { domain DomainName projection_scope ProjectionScope }
-  Projection { query ProjectionQuery records (Vector DomainNameSystemRecord) redirects (Vector RedirectRule) }
+  ResolutionQuery { name.DomainName ResolutionScope }
+  Address { name.DomainName address.NetworkAddress }
+  ResolutionResult { query.ResolutionQuery addresses.(Vector Address) }
+  DomainQuery { root.(Optional DomainName) }
+  DomainListing { domains.(Vector DomainName) }
+  Delegation { DelegationName DomainName DelegationTarget }
+  DelegationQuery { domain.(Optional DomainName) }
+  DelegationListing { delegations.(Vector Delegation) }
+  DomainNameSystemRecord { name.DomainName RecordKind value.RecordValue }
+  RedirectRule { source.DomainName target.UniformResourceLocator RedirectStatus PathTreatment }
+  ProjectionQuery { domain.DomainName ProjectionScope }
+  Projection { query.ProjectionQuery records.(Vector DomainNameSystemRecord) redirects.(Vector RedirectRule) }
   Observation [(Domains Domains) (Delegations Delegations) (Projection Project)]
   Domains DomainQuery
   Delegations DelegationQuery
   Validation Domain
   ObservationResult [(Domains DomainListing) (Delegations DelegationListing) (Projection Projection)]
   RejectionReason [DomainUnknown DelegationUnknown ProjectionUnavailable]
-  RejectedRequest { operation OperationKind reason RejectionReason }
+  RejectedRequest { operation.OperationKind reason.RejectionReason }
   OperationKind [Observe Resolve Project Validate]
-  ValidationReport { findings (Vector ValidationFinding) }
-  ValidationFinding { severity FindingSeverity message Message }
+  ValidationReport { findings.(Vector ValidationFinding) }
+  ValidationFinding { severity.FindingSeverity Message }
   FindingSeverity [Notice Warning Error]
   Message String
 }
