@@ -1,7 +1,7 @@
 # signal-domain-criome — Agent Instructions
 
-Read `~/primary/AGENTS.md`, then this repository's `INTENT.md`,
-`ARCHITECTURE.md`, and this file.
+Read this repository's `INTENT.md`, `ARCHITECTURE.md`, and this file before
+editing.
 
 This repository is a pure Signal contract crate. It declares the ordinary
 Criome-domain resolution and projection vocabulary. It contains no daemon,
